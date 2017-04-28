@@ -1,0 +1,31 @@
+Algorithm for Training
+
+While training we have to take Training Dataset
+
+Step 1: Take Body of the Email in String 
+Step 2: allword //Combine in one string
+Step 3: freqofwords = freqdata(allword) //check out the frequency of the words
+Step 4: Pr(wi|S) = freqof(wi)inspam/no_of_spammail
+	do this for each word
+Step 5: Pr(wi|H) = freqof(wi)inham/no_of_hammail
+	do this for each word
+Step 6: Store this Pr(wi|S) and Pr(wi|H) in Excel File
+
+Algorithm for Testing
+
+Input is the mail(E)
+
+Step 1: words (words of body)
+Step 2: freqofwords = freqdata(allword)
+Step 3: Pr(E|S) = productforeachword(Pr(wi|S) * freqof(wi)) 
+	//Pr(wi|S) from trained dataset from excel and current frequency of that word in E
+Step 4: Pr(E|H) = productforeachword(Pr(wi|H) * freqof(wi)) 
+	//Pr(wi|H) from trained dataset from excel and current frequency of that word in E
+Step 5: Calculate Pr(E|S)*Pr(S)
+Step 6: Calculate Pr(E|H)*Pr(H)
+Step 7: ratio = Pr(E|S)*Pr(S)/Pr(E|H)*Pr(H)
+Step 8: range = log(ratio)
+Step 9: if(range>0) then 
+	E = spam
+	else
+	E = ham
